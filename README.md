@@ -1,4 +1,4 @@
-# SmallSlee
+# SmallSleep
 > have a rest and do some meditation 
 ## 它的功能
 1. 睡眠倒计时
