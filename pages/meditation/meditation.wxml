@@ -1,0 +1,2 @@
+<!--pages/meditation/meditation.wxml-->
+<timer increase="true"></timer>

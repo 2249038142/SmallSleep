@@ -1,0 +1,20 @@
+<!--pages/sleep/sleep.wxml-->
+<view class="weather"> 
+<view class="weather-row"> 
+<text>{{weatherData.currentCity}}</text> 
+<text>{{weatherData.date}}</text>
+ <text>{{weatherData.weatherDesc}} {{weatherData.wind}}</text> 
+ <image src="{{weatherPicPath}}"></image>
+  </view>
+ 
+</view>
+<view class="sleep-four">
+<view class="sleep-info" wx:for="{{sleepTimeList}}" wx:key="index">
+<navigator url="../fallIn/fallIn?times={{item.times}}" >
+<text>{{item.name}}</text>
+<image src="{{item.imagePath}}" class="sleep-image"></image>
+<text>{{item.message}}</text>
+</navigator>
+</view>
+</view>
+
