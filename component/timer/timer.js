@@ -1,5 +1,6 @@
 // component/timer.js
-const backgroundAudioManager = wx.getBackgroundAudioManager()
+const backgroundAudioManager = wx.createInnerAudioContext()
+backgroundAudioManager.autoplay = false
 Component({
   /**
    * 组件的属性列表
@@ -25,7 +26,14 @@ Component({
     modal: {},
     resttext: "休息结束时间未到哦，如果休息好了那就继续工作吧！",
     finishtext: "",
-    bgms: [{
+    bgms: [
+      {
+        name: "冥想歇息",
+        imagePath: "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640",
+        imageClass: ".bg3",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827713.mp3"
+      }
+      ,{
       name: "林泉禅修",
       imagePath: "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640",
       imageClass: ".bg1",
@@ -56,7 +64,7 @@ Component({
     let bsound = this.data.bgms[0].backgroudSound
     backgroundAudioManager.title = this.data.bgms[0].name
     backgroundAudioManager.src = bsound
-    backgroundAudioManager.pause()
+   // backgroundAudioManager.pause()
   },
 
   /**
@@ -73,8 +81,8 @@ Component({
       let bsound = this.data.bgms[this.data.current].backgroudSound
       backgroundAudioManager.title = this.data.bgms[this.data.current].name
       backgroundAudioManager.src = bsound
-      if (!this.data.isStart) {
-       backgroundAudioManager.pause()
+      if (this.data.isStart) {
+      backgroundAudioManager.play()
       /*  backgroundAudioManager.onPlay(() => 
          backgroundAudioManager.pause())*/
       }
