@@ -43,7 +43,7 @@ Page({
           }
         })
       }
-    this.getLogs()
+   // this.getLogs()
   
     },
     getUserInfo: function(e) {
@@ -54,7 +54,7 @@ Page({
         hasUserInfo: true
       })
     },
-  getLogs: function () {
+ /* getLogs: function () {
     let todayC = new Date().toLocaleDateString()
     let logsTime = wx.getStorageSync('logsTime')
   console.log(logsTime)
@@ -65,7 +65,7 @@ Page({
     this.setData({
       logsTime: logsTime
     })
-  },
+  },*/
  
   /**
    * 生命周期函数--监听页面初次渲染完成

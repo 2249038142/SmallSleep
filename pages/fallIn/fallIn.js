@@ -1,24 +1,41 @@
 // pages/fallIn/fallIn.js
 Page({
-
+  
+ /* properties: {
+    increase: {
+      type: Boolean,
+      value: false
+    },
+  },*/
   /**
    * 页面的初始数据
    */
   data: {
-times:0
+    increase:false,
+    isStart: false,
+    times: 0,
+    minute: 0,
+    second: 0,
+    leftDeg: 45,
+    rightDeg: -45,
+    log: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({ times:options.times})
+    let minutes = Math.floor(options.times / 60)
+    let inc = options.increase === "false" ? false : true
+    if (inc === false) {
+      this.setData({
+        times: options.times,
+        increase: inc,
+        minute: minutes,
+      })
+      }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+ 
   onReady: function () {
 
   },

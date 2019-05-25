@@ -1,24 +1,91 @@
 /* pages/userinfo/userinfo.wxss */
+
+.contain {
+    height: 100%;
+    background: #fff;
+}
+
 .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url(https://i.loli.net/2019/05/23/5ce68e8dce7b252865.jpg
+);
+    height: 40%;
+    width: 100%;
+    background-size: 100% 100%;
+    justify-content: center;
+}
+
+.userinfo image {
+    border: 10rpx solid #c2bbc3;
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+    color: #fff;
 }
+
+.card-menu {
+    overflow: hidden;
+    margin: 50rpx 30rpx;
+    border-radius: 20rpx;
+    box-shadow: 1px 1px 5px #bbb;
+    background-color: #f1f0f1;
+}
+
+.card-item {
+    display: flex;
+    margin-top: 4rpx;
+    padding: 0 30rpx;
+    min-height: 120rpx;
+    background-color: #fff;
+    /*justify-content:space-between;*/
+    align-items: center;
+}
+
+.card-item .content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.text-grey {
+    color: #8799a3;
+    flex: 1;
+}
+
+.logPic {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.arrow {
+    margin-right: 20rpx;
+    width: 30rpx;
+    height: 30rpx;
+    padding-top: 10rpx;
+}
+
 .log {
-	color: #999;
-	margin: 15px 10px;
+    color: #999;
+    margin: 15px 10px;
 }
-.log_item{
-	padding: 15px 5px;
+
+.log_item {
+    padding: 15px 5px;
+}
+.card-item button::after {
+  border: none;
+}
+.card-item button {
+  background-color: #fff;
+  padding: 0;
+  text-align: left;
 }

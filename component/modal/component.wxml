@@ -1,0 +1,14 @@
+
+<view class='modal-wrapp' wx:if='{{modal.show}}'>
+  <view class='modal-main' style='height:{{(modal.height)?modal.height:modalDefault.height}}'>
+    <view class='modal-title'>{{(modal.title)?modal.title:modalDefault.title}}</view>
+    <scroll-view scroll-y class='modal-content'>
+      <slot></slot>
+    </scroll-view>
+    <view class='modal-button'>
+      <view class='modal-cancel' style='color:{{(modal.cancelColor)?modal.cancelColor:modalDefault.cancelColor}}' wx:if='{{modal.showCancel}}' bindtap="modalCancel">{{(modal.cancelText)?modal.cancelText:modalDefault.cancelText}}</view>
+       <button open-type='share' wx:if='{{modal.isShare}}' class='modal-confirm' style='color:{{(modal.confirmColor)?modal.confirmColor:modalDefault.confirmColor}}' bindtap="modalConfirm">{{(modal.confirmText)?modal.confirmText:modalDefault.confirmText}}</button>
+      <view wx:if='{{!modal.isShare}}' class='modal-confirm' style='color:{{(modal.confirmColor)?modal.confirmColor:modalDefault.confirmColor}}' bindtap="modalConfirm">{{(modal.confirmText)?modal.confirmText:modalDefault.confirmText}}</view> 
+    </view>
+  </view>
+</view>

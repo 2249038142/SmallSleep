@@ -2,14 +2,30 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
+    let logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+         wx.request({
+           url: 'http://129.204.63.87/sleep/public/api/v1/token/user',
+            method: "POST",
+            data: {
+             code: res.code
+            },
+           header: {
+             'Content-Type': 'application/json'
+           },
+            success:  res=> {
+       wx.setStorageSync('userToken', res.data.token)
+              console.log(wx.getStorageSync('userToken'))
+            /* this.setData({
+               userToken:res.token
+             })*/
+            }
+          })
       }
     })
     // 获取用户信息

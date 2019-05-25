@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-   "timer":"/component/timer"
+   "timer":"/component/timer/timer"
   }
 }

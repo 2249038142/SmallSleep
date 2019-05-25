@@ -8,27 +8,27 @@ Page({
   data: {
 sleepTimeList:[
 {
-  name:"效率小休",
-  imagePath:"/images/10min.png",
-  message:"提升效率",
+  name:"6min",
+  imagePath:"/images/flower3.png",
+  message:"效率小休 提升效率",
   times:360
 },
   {
-    name: "放松长休",
-    imagePath: "/images/24min.png",
-    message: "精神焕发",
+    name: "20min",
+    imagePath: "/images/flower1.png",
+    message: "放松长休 清醒头脑",
     times: 1200
   },
   {
-    name: "NASA午休",
-    imagePath: "/images/25min.png",
-    message: "下午心神好",
+    name: "40min",
+    imagePath: "/images/flower4.png",
+    message: "NASA午休 荣光焕发",
     times: 2400
   },
   {
-    name: "完整午休",
-    imagePath: "/images/90min.png",
-    message: "周期睡眠",
+    name: "90min",
+    imagePath: "/images/flower2.png",
+    message: "完整午休 周期睡眠",
     times: 5400
   },
 
@@ -54,13 +54,16 @@ sleepTimeList:[
           weatherData: weatherData
         });
     
-       let weatherPic = weatherData.weatherDesc.match(/晴|阴|雨|雪|雾|沙/)
+       let weatherPic = weatherData.weatherDesc.match(/晴|云|阴|雨|雪|雾|沙/)
 console.log(weatherPic)
 switch(weatherPic[0]){
   case '晴': this.setData({
     weatherPicPath: '/images/sun.png'
   }); break;
   case '阴': this.setData({
+    weatherPicPath: '/images/cloudy.png'
+  }); break;
+  case '云': this.setData({
     weatherPicPath: '/images/cloudy.png'
   }); break;
   case '雨': this.setData({

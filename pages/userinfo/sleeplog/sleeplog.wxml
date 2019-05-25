@@ -1,0 +1,8 @@
+<!--pages/userinfo/sleeplog/sleeplog.wxml-->
+<view class="logmain">
+
+<view wx:for="{{timeList}}" class="log-item">
+<view  class="log-info">{{item.today_time}}</view>
+<!----><view class="log-time">{{attributeName?item.sleep_time:item.think_time}}</view>
+</view>
+</view>

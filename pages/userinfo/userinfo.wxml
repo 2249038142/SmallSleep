@@ -1,20 +1,34 @@
 <!--pages/userinfo/userinfo.wxml-->
-<!--index.wxml-->
-<view class="container">
+<view class="contain">
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo && canIUse}}" class='show-author'>
       <button open-type="getUserInfo" class='show-author' bindgetuserinfo="getUserInfo">登陆</button>
     </block>
     <block wx:else>
-      <image  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="log panel">
-	  	<view class="log-item" wx:for="{{logsTime}}" wx:key="key">
-	  	<!--	<text class="log_start">{{item.startTime}}</text>-->
-	  		<text class="log-action">{{item.keepTime}}s</text>
-	  		<text class="log-action">{{item.name}}</text>
-	  	</view>
-	  </view>
+  <view class="card-menu">
+    <view class="card-item">
+      <navigator class="content" url="/pages/userinfo/sleeplog/sleeplog" hover-class="none">
+        <text class="text-grey">睡眠日志</text>
+        <image class="arrow" src='/images/icon/enter.png'></image>
+      </navigator>
+    </view>
+    <view class="card-item">
+      <navigator class="content" url="/pages/userinfo/sleeplog/sleeplog?attributeName=false" hover-class="none">
+        <text class="text-grey">冥想日志</text>
+        <image class="arrow" src='/images/icon/enter.png'></image>
+      </navigator>
+    </view>
+    <view class="card-item">
+
+      <button class='text-grey' open-type="feedback">
+        意见反馈
+      </button>
+      <image class="arrow" src='/images/icon/enter.png'></image>
+    </view>
+  </view>
+
 </view>

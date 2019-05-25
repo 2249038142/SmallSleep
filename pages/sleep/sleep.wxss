@@ -1,40 +1,67 @@
 /* pages/sleep/sleep.wxss */
-.weather{
-  background: url(https://i.loli.net/2019/05/11/5cd6be9866ff2.png);
-  height: 550rpx;
-  width:100%;
-  background-size: 100% 100%; 
-}
-.weather-row{
-  display: flex;
-  height: 380rpx;
-   align-items:center;
-    justify-content:flex-end; 
-    flex-direction:column;
-}
-.weather-row text{
- font-size: 16px;
-    color: white;
-}
-.weather-row image{
-  width: 120rpx;
-  height: 120rpx;
-}
-.sleep-four{
-  display: flex;
-  flex-wrap: wrap;
-  align-content:space-between;
 
+.weather {
+    background: url(https://i.loli.net/2019/05/23/5ce68e8dce7b252865.jpg);
+    height: 41%;
+    width: 100%;
+    background-size: 100% 100%;
 }
-.sleep-image{
-  width: 200rpx;
-  height: 200rpx;
+
+.weather-column {
+    display: flex;
+    height: 380rpx;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }
-.sleep-info navigator{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:center;
-  width:  375rpx;
-  height: 400rpx;
+
+.weather-column text {
+    font-size: 16px;
+    color: white;
+    line-height: 2;
+}
+
+.weather-column text:nth-child(2) {
+    font-size: 80%;
+}
+
+.weather-column text:nth-child(3) {
+    font-weight: 1.2;
+}
+
+.weather-column image {
+    padding-top: 20rpx;
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.sleep-four {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 55%;
+}
+
+.sleep-image {
+    width: 120rpx;
+    height: 200rpx;
+}
+
+.sleep-image:last-child {
+    width: 180rpx;
+}
+
+.sleep-info navigator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 375rpx;
+    padding: 50rpx 0;
+    /*height: 25%;*/
+}
+
+.sleep-info text:nth-child(3) {
+    color: #a0a0a0;
+    font-size: 70%;
 }

@@ -1,0 +1,35 @@
+<!-- component/timer.wxml -->
+<view class="container">
+  <view class="time-fix">
+    <view class="time-wrap">
+      <view class="{{isStart?'time-mask time-mask-animation':'time-mask'}}"></view>
+      <view class="time-progress t-left">
+        <view class="time-circle tc-left" style="transform: rotate({{leftDeg}}deg);"></view>
+      </view>
+      <view class="time-progress t-right">
+        <view class="time-circle tc-right" style="transform: rotate({{rightDeg}}deg);"></view>
+      </view>
+      <view wx:if="{{increase}}">
+        <text class="c-white c-time">{{minute}}:{{second}}s</text>
+      </view>
+      <view wx:else>
+        <text class="c-white c-time">{{minute}}min</text>
+      </view>
+    </view>
+    <view bindtap='countDown' class="c-white c-action">{{isStart?'结束':'开始'}}</view>
+     <modal modal="{{modal1}}" bindsuccess='modalOperate' catchtouchmove="ture">
+    <view class='modal-content' >{{resttext}}</view>
+  </modal>
+  <modal modal="{{modal2}}" bindsuccess='restfinish' catchtouchmove="ture">
+  <view class="time-grey">{{today}}</view>
+    <view class='modal-content' >{{finishtext}}</view>
+  </modal>
+  </view>
+  <swiper bindchange="swiperChange" class="bgm-swiper" indicator-dots='true'>
+    <swiper-item wx:for="{{bgms}}">
+      <view class="bg {{item.imageClass}}">
+        <text>{{item.name}}</text>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

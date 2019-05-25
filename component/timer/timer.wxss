@@ -1,0 +1,163 @@
+/* component/timer.wxss */
+
+.container {
+  height: 100%;
+  background: grey; 
+}
+
+.time-fix {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+   margin:0 auto;
+  left: 0;
+  right: 0;
+  top: 40%;
+  width:300rpx;
+}
+
+.time-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300rpx;
+  height: 300rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+.time-mask::before{
+  content: '';
+  position: absolute;
+
+  filter: blur(20px);
+  margin: -30px;
+
+}
+.time-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 3px solid #82c4f0;
+  opacity: 0.5;
+  border-radius: 50%;
+    background: hsla(0,0%,100%,.1);
+    filter: blur(2px);
+}
+.time-mask-animation{
+	animation:breathe 4000ms ease-in-out infinite alternate;
+
+}
+@keyframes breathe {
+	0% {
+/*	opacity:.2;*/
+	box-shadow:0 1px 2px rgba(255,255,255,0.1);
+}
+100% {
+	/*opacity:1;*/
+	border:1px solid rgba(59,235,235,1);
+	box-shadow:0 1px 40px rgba(59,255,255,1);
+}
+}
+.time-progress {
+  position: absolute;
+  top: 0;
+  width: 150rpx;
+  height: 300rpx;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.t-left {
+  left: 0;
+}
+
+.t-right {
+  right: 0;
+}
+
+.time-circle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300rpx;
+  height: 300rpx;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.tc-left {
+  left: 0;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(45deg);
+  
+}
+
+.tc-right {
+  right: 0;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+ 
+}
+
+.c-white {
+  color: white;
+}
+
+.c-time {
+  font-size: 150%;
+}
+
+.c-action {
+  margin-top: 40rpx;
+  width: 200rpx;
+  height: 80rpx;
+  border: 4rpx solid white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+
+.bgm-swiper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  height: 100%;
+}
+
+.bg text {
+  color: white;
+  display: flex;
+  justify-content: center;
+  transform: translateY(160rpx);
+}
+.time-grey{
+  font-size: 80%;
+  color: rgb(138, 134, 148)
+}
+.bg1 {
+  background-color: #434343;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%234e4e4e' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%235a5a5a' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23656565' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23707070' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%237b7b7b' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23878787' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23929292' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg2 {
+  background-color: #7a7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
