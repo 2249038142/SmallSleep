@@ -1,6 +1,9 @@
 // component/timer.js
 const backgroundAudioManager = wx.createInnerAudioContext()
 backgroundAudioManager.autoplay = false
+backgroundAudioManager.loop=true
+let voiceCP = backgroundAudioManager.volume
+let [startTime, endTime] = [0, 0]
 Component({
   /**
    * 组件的属性列表
@@ -23,25 +26,29 @@ Component({
    * 组件的初始数据
    */
   data: {
+    voicePath:"/images/icon/voice-open.png",
     modal: {},
     resttext: "休息结束时间未到哦，如果休息好了那就继续工作吧！",
     finishtext: "",
+    beforeKeepTime:0,
     bgms: [
       {
         name: "冥想歇息",
-        imagePath: "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640",
+        imageClass: ".bg4",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827699.mp3"
+      },
+      {
+        name: "冥想歇息",
         imageClass: ".bg3",
         backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827713.mp3"
       }
       ,{
       name: "林泉禅修",
-      imagePath: "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640",
       imageClass: ".bg1",
       backgroudSound: "http://music.163.com/song/media/outer/url?id=1310317459.mp3"
     },
     {
       name: "溪水溶洞",
-      imagePath: "../images/Wavey-Fingerprint.svg",
       imageClass: ".bg2",
       backgroudSound: "http://music.163.com/song/media/outer/url?id=1310316559.mp3"
     },
@@ -55,23 +62,44 @@ Component({
   },
 
 
-  onShareAppMessage(res) {
-    return {
-      title: '歇息与冥想',
-    }
-  },
+
   attached() {
     let bsound = this.data.bgms[0].backgroudSound
     backgroundAudioManager.title = this.data.bgms[0].name
     backgroundAudioManager.src = bsound
-   // backgroundAudioManager.pause()
+  
   },
-
+  pageLifetimes: {
+    show: function () {
+      // 页面被展示
+      this.setData({
+        realTime: this.properties.times
+      })
+      console.log(this.data.realTime)
+    }
+    },
   /**
    * 组件的方法列表
    */
   methods: {
+    voiceClose:function(){
+      console.log(voiceCP)
+      if (voiceCP) {
+        backgroundAudioManager.pause()
+        this.setData({
+          voicePath: "/images/icon/voice-close.png"
+        })
+        voiceCP=0
+      }else{
+        if (this.data.isStart) { backgroundAudioManager.play()}
+        this.setData({
+          voicePath: "/images/icon/voice-open.png"
+        })
+        voiceCP = 1
+      }
 
+    },
+    //背景页转换
     swiperChange: function (e) {
         if (e.detail.source == 'touch') {
       this.setData({
@@ -86,13 +114,12 @@ Component({
       /*  backgroundAudioManager.onPlay(() => 
          backgroundAudioManager.pause())*/
       }
-   
     },
   
     countDown: function (event) {
       let isStart = this.data.isStart
       let times = this.data.times //获取倒计时初始值
-      let halfTime = this.data.times / 2
+      let halfTime = this.data.realTime / 2
       let todayT = new Date().toLocaleDateString()
 
       this.setData({
@@ -100,6 +127,7 @@ Component({
       })
       //判断开始
       if (!isStart) {
+startTime =new Date().getTime()/1000
         backgroundAudioManager.play()
         //冥想正计时
         if (this.data.increase) {
@@ -114,35 +142,45 @@ Component({
           this.timer = setInterval(() => {
             times--
             //圆形进度条
+            console.log(times)
+            console.log(halfTime)
             if (times > halfTime) {
               this.setData({
-                leftDeg: this.data.leftDeg - 360 / this.data.times
+                leftDeg: this.data.leftDeg - 360 / this.data.realTime
               })
             } else {
               this.setData({
                 leftDeg: -135,
-                rightDeg: this.data.rightDeg - 360 / this.data.times
+                rightDeg: this.data.rightDeg - 360 / this.data.realTime
               })
             }
             this.mathTime(times)
-            if (times == 0) {
+            //如果睡眠结束
+            if (times === 0) {
+              wx.vibrateLong()
+              this.setData({
+                leftDeg: 45,
+                rightDeg: -45,
+              })
               this.data.log = {
                 name: this.properties.increase,
-                keepTime: times,
+                keepTime: this.realTime.times,
                 today: todayT
               }
               this.saveLog(this.data.log)
               clearInterval(this.timer)
               this.finished()
+              backgroundAudioManager.pause()
             }
           }, 1000)
         }
       }//判断结束按钮
       else {
+        endTime = new Date().getTime()/1000
         backgroundAudioManager.pause()
         this.data.log = {
           name: this.properties.increase,
-          keepTime: Math.abs(this.data.endTime - times),
+          keepTime: Math.abs(this.data.endTime - times) + this.data.beforeKeepTime,
           today: todayT
         }
         this.saveLog(this.data.log)
@@ -167,11 +205,9 @@ Component({
       
       }
       //传Modal框数据
-
     },
     saveLog: function (log) {
       //防止用户多次点击
-      console.log(wx.getStorageSync('userToken')) 
       if (log.keepTime > 2) {
         let meditationTime = log.name ? log.keepTime : 0
         let sleepTime = log.name ? 0 : log.keepTime
@@ -180,7 +216,9 @@ Component({
           method: "POST",
           data: {
             think_time: meditationTime,
-            sleep_time: sleepTime
+            sleep_time: sleepTime,
+            end_time:endTime,
+            start_time:startTime
           },
           header: {
             'Content-Type': 'application/json',
@@ -192,6 +230,7 @@ Component({
         })}
     
     },
+    //计算分秒函数
     mathTime: function (times) {
       let M = Math.floor(times / 60)
       let S = Math.floor(times) % 60
@@ -201,8 +240,8 @@ Component({
         second: S,
       })
     },
+    //完成弹出框
     finished: function () {
-      console.log(this.data)
       let objModal = {
         show: true,
         title: '完成！',
@@ -228,22 +267,24 @@ Component({
         this.finished()
         console.log('confirm')
       } else if (res.detail.res == 'cancel') {
-        console.log('cancel')
+        
         this.setData({
-          times: this.data.times-this.data.log.keepTime
+          beforeKeepTime: this.data.beforeKeepTime +this.data.log.keepTime,
+          times: this.data.realTime-this.data.log.keepTime
         })
-        console.log(this.data.times)
+        console.log(this.data.beforeKeepTime)
         this.countDown()
       }
     },
     restfinish: function (res) {
-      if (res.detail.res == 'confirm') {
+      if (res.detail.res == 'confirm') {    
         console.log('confirm')
       } else if (res.detail.res == 'cancel') {
+        wx.navigateBack({
+          delta:1
+        })
         console.log('cancel')
       }
     }
   },
-
-
 })

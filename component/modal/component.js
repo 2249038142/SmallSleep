@@ -1,21 +1,5 @@
 
-/**
- =====================================================================
- * 调用模板
- *   <modal modal="{{modal}}" bindsuccess='modalOperate'>
-        <view class='modal-content' wx:for="{{content}}">{{item.text}}</view>
-    </modal>
- * 调用模板说明：modal为弹框属性集合，content为自定义显示内容，modalOperate为页面中的操作函数，如下
- * 
-    //modla操作事件，绑定于bindsuccess上
-    modalOperate: function(res) {
-    if (res.detail.res == 'confirm') {
-      console.log('confirm')
-    } else if (res.detail.res == 'cancel') {
-      console.log('cancel')
-    }
-  },
- =====================================================================
+/*
  * modal属性使用对象集合进行处理
  * 调用方式如下：
  *  modal: {
@@ -68,7 +52,8 @@ Component({
       confirmColor: '#3cc51f',
       clickClose: true,
       isShare:false,
-    }
+    },
+ 
   },
 
   /**
@@ -90,7 +75,7 @@ Component({
     modalConfirm() {
       this.modalShowChange();
       this.triggerEvent('success', {
-        res: 'confirm'
+        res: 'confirm',
       })
     },
     /**

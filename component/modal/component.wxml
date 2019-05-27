@@ -7,7 +7,7 @@
     </scroll-view>
     <view class='modal-button'>
       <view class='modal-cancel' style='color:{{(modal.cancelColor)?modal.cancelColor:modalDefault.cancelColor}}' wx:if='{{modal.showCancel}}' bindtap="modalCancel">{{(modal.cancelText)?modal.cancelText:modalDefault.cancelText}}</view>
-       <button open-type='share' wx:if='{{modal.isShare}}' class='modal-confirm' style='color:{{(modal.confirmColor)?modal.confirmColor:modalDefault.confirmColor}}' bindtap="modalConfirm">{{(modal.confirmText)?modal.confirmText:modalDefault.confirmText}}</button>
+       <button open-type='share'  wx:if='{{modal.isShare}}' class='modal-confirm' style='color:{{(modal.confirmColor)?modal.confirmColor:modalDefault.confirmColor}}' bindtap="modalConfirm">{{(modal.confirmText)?modal.confirmText:modalDefault.confirmText}}</button>
       <view wx:if='{{!modal.isShare}}' class='modal-confirm' style='color:{{(modal.confirmColor)?modal.confirmColor:modalDefault.confirmColor}}' bindtap="modalConfirm">{{(modal.confirmText)?modal.confirmText:modalDefault.confirmText}}</view> 
     </view>
   </view>

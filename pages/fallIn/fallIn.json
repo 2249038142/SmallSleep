@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "timer": "/component/timer/timer"
+    "timer": "/component/timer/timer",
+    "modal": "/component/modal/component"
   }
- 
 }

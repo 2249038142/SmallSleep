@@ -1,2 +1,7 @@
 <!--pages/fallIn/fallIn.wxml-->
 <timer minute="{{minute}}" times="{{times}}" increase="{{increase}}"></timer>
+<image class="tip" bindtap='smallTip' src="/images/icon/tip.png"></image>
+<modal modal="{{modal3}}" bindsuccess='restfinish' catchtouchmove="true">
+    <view class='modal-content' >{{meditationtip1}}</view>
+   <view class='modal-content' >{{meditationtip2}}</view>
+  </modal>

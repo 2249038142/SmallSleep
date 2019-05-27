@@ -1,18 +1,37 @@
 /* pages/userinfo/sleeplog/sleeplog.wxss */
-.logmain{
-  background: #ddd4dc;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top:0;
-}
-.log-item{
-  margin: 30rpx 50rpx;
-  padding:30rpx;
-border-radius:6rpx;
-display:block;
-line-height:1.6;
-background: #fff;
-box-shadow: 2rpx 2rpx 4rpx #5b5e5741;
 
+page {
+  background-color: #f3eff3;
+}
+
+.log-item {
+  margin: 30rpx 50rpx;
+  padding: 30rpx 50rpx;
+  border-radius: 20rpx;
+  display: block;
+  line-height: 1.6;
+  background: #fff;
+  box-shadow: 3rpx 6rpx 4rpx #5b5e5741;
+  
+}
+
+.log-info{
+  font-size: 80%;
+color: #818181;
+}
+.log-time{
+float: right;
+font-size: 130%;
+transform: translateY(20rpx);
+}
+.log-dtime{
+  font-size: 60%;
+  color: #bebebe;
+}
+.logIcon{
+  width: 100rpx;
+  height: 100rpx;
+float: left;
+padding-right: 20rpx;
+/*transform: translateY(-44rpx);*/
 }

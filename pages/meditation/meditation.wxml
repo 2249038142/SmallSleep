@@ -1,2 +1,6 @@
 <!--pages/meditation/meditation.wxml-->
 <timer increase="true"></timer>
+<image class="tip" bindtap='smallTip' src="/images/icon/tip.png"></image>
+ <modal modal="{{modal3}}" bindsuccess='restfinish' catchtouchmove="true">
+    <view class='modal-content' >{{meditationtip}}</view>
+  </modal>

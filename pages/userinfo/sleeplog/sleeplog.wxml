@@ -1,8 +1,11 @@
 <!--pages/userinfo/sleeplog/sleeplog.wxml-->
 <view class="logmain">
-
 <view wx:for="{{timeList}}" class="log-item">
-<view  class="log-info">{{item.today_time}}</view>
-<!----><view class="log-time">{{attributeName?item.sleep_time:item.think_time}}</view>
+<image class="logIcon" src="{{attributeName?'/images/sleep4.png':'/images/sleep2.png'}}"></image>
+<text class="log-time">{{attributeName?item.sleep_time:item.think_time}}</text> 
+<text class="log-info">{{item.time}}\n</text> 
+<text class="log-dtime">{{item.start_time}}-{{item.end_time}}</text>
+
+
 </view>
 </view>

@@ -1,4 +1,6 @@
 {
   "navigationStyle": "default",
-  "usingComponents": {}
+  "usingComponents": {},
+  "backgroundColor": "#ddd4dc",
+  "navigationBarTitleText": "歇息日志"
 }

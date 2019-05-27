@@ -1,16 +1,13 @@
 // pages/fallIn/fallIn.js
 Page({
   
- /* properties: {
-    increase: {
-      type: Boolean,
-      value: false
-    },
-  },*/
+
   /**
    * 页面的初始数据
    */
   data: {
+    meditationtip1:" 休息可以分很多形式，其中睡眠是最重要的投资。时间充裕的人往往能获得更多幸福感。请闭起眼睛，全神贯注地听你喜欢的音乐。",
+    meditationtip2: " Stress is not the problem. The problem is lack of recovery.",
     increase:false,
     isStart: false,
     times: 0,
@@ -20,7 +17,19 @@ Page({
     rightDeg: -45,
     log: {}
   },
-
+  smallTip: function () {
+    let objModal = {
+      show: true,
+      title: '歇息小贴士',
+      showCancel: false,
+      height: '50%',
+      confirmText: '知道啦'
+    }
+    this.setData({
+      modal3: objModal
+    })
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */

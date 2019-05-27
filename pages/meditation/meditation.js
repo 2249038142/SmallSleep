@@ -5,8 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    meditationtip: "手脚、全身都放松，闭上眼睛。把注意力集中于呼吸上面，深深地、静静地、缓缓地呼吸，关注自己的每一次呼气和吸气。 冥想可以改变大脑结构，提升我们的思维模式，觉知，与感受。"
   },
+smallTip:function(){
+  let objModal = {
+    show: true,
+    title: '冥想小贴士',
+    showCancel: false,
+    height: '50%',
+    confirmText: '知道啦'
+  }
+  this.setData({
+    modal3: objModal
+  })
+},
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -21,7 +34,6 @@ Page({
   onReady: function () {
 this.timer=this.selectComponent("#timer")
   },
-
   countDown() {
     this.timer.countDown();
   },

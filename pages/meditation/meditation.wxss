@@ -1,1 +1,8 @@
 /* pages/meditation/meditation.wxss */
+.tip{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top:166rpx;
+  left: 50rpx;
+}

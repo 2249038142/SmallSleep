@@ -5,42 +5,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    attributeName:true,
-thatday:"",
-meditationTime:"",
-restTime:"",
+    attributeName: true,
+    thatday: "",
+    meditationTime: "",
+    restTime: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     console.log(options.attributeName)
-    let attributeName = options.attributeName === "false" ? false :true 
-    console.log(attributeName)
-  this.setData({
-    attributeName: attributeName
-  })
-    
+    let attributeName = options.attributeName === "false" ? false : true
+    let timeLogUrl = attributeName ? 'https://www.xiaominblog.cn/sleep/public/api/v1/getsleep' :'https://www.xiaominblog.cn/sleep/public/api/v1/getthink'
+   
+    this.setData({
+      attributeName: attributeName
+    })
     wx.request({
-      url: 'http://129.204.63.87/sleep/public/api/v1/getrecord',
+      url: timeLogUrl,
       method: "get",
       header: {
         'Content-Type': 'application/json',
         'Token': wx.getStorageSync('userToken')
       },
       success: res => {
-console.log(res)
-    Object.keys(res.data).forEach((index)=>{
-      console.log(res.data[index]) 
-  this.setData({
-    timeList: res.data[0].data
-    })
-    })
+        console.log(res)
+       /* for (let realTime of res.data){
+          console.log(realTime)
+        }*/
+        this.setData({
+          timeList:res.data
+        })
+        wx.hideLoading()
       }
-    
-    
     })
+
   },
 
   /**
