@@ -68,7 +68,7 @@
 100% {
 	/*opacity:1;*/
 	border:1px solid rgba(59,235,235,1);
-	box-shadow:0 1px 40px rgba(59,255,255,1);
+	box-shadow:0 1px 50px rgba(59,255,255,1);
 }
 }
 .time-progress {

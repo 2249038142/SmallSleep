@@ -11,7 +11,7 @@ Page({
         name: "6min",
         imagePath: "/images/flower3.png",
         message: "效率小休 提升效率",
-        times: 20
+        times: 360
       },
       {
         name: "20min",

@@ -1,7 +1,7 @@
 // component/timer.js
 const backgroundAudioManager = wx.createInnerAudioContext()
 backgroundAudioManager.autoplay = false
-backgroundAudioManager.loop=true
+backgroundAudioManager.loop = true
 let voiceCP = backgroundAudioManager.volume
 let [startTime, endTime] = [0, 0]
 Component({
@@ -26,14 +26,14 @@ Component({
    * 组件的初始数据
    */
   data: {
-    voicePath:"/images/icon/voice-open.png",
+    voicePath: "/images/icon/voice-open.png",
     modal: {},
     resttext: "休息结束时间未到哦，如果休息好了那就继续工作吧！",
     finishtext: "",
-    beforeKeepTime:0,
+    beforeKeepTime: 0,
     bgms: [
       {
-        name: "冥想歇息",
+        name: "风铃鸟莺",
         imageClass: ".bg4",
         backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827699.mp3"
       },
@@ -42,23 +42,23 @@ Component({
         imageClass: ".bg3",
         backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827713.mp3"
       }
-      ,{
-      name: "林泉禅修",
-      imageClass: ".bg1",
-      backgroudSound: "http://music.163.com/song/media/outer/url?id=1310317459.mp3"
-    },
-    {
-      name: "溪水溶洞",
-      imageClass: ".bg2",
-      backgroudSound: "http://music.163.com/song/media/outer/url?id=1310316559.mp3"
-    },
+      , {
+        name: "林泉禅修",
+        imageClass: ".bg1",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1310317459.mp3"
+      },
+      {
+        name: "溪水溶洞",
+        imageClass: ".bg2",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1310316559.mp3"
+      },
 
     ],
     isStart: false,
     second: 0,
     leftDeg: 45,
     rightDeg: -45,
-    log:{}
+    log: {}
   },
 
 
@@ -67,7 +67,6 @@ Component({
     let bsound = this.data.bgms[0].backgroudSound
     backgroundAudioManager.title = this.data.bgms[0].name
     backgroundAudioManager.src = bsound
-  
   },
   pageLifetimes: {
     show: function () {
@@ -75,23 +74,25 @@ Component({
       this.setData({
         realTime: this.properties.times
       })
-      console.log(this.data.realTime)
+      if (!this.data.increase) {
+        this.countDown()
+      }
     }
-    },
+  },
   /**
    * 组件的方法列表
    */
   methods: {
-    voiceClose:function(){
+    voiceClose: function () {
       console.log(voiceCP)
       if (voiceCP) {
         backgroundAudioManager.pause()
         this.setData({
           voicePath: "/images/icon/voice-close.png"
         })
-        voiceCP=0
-      }else{
-        if (this.data.isStart) { backgroundAudioManager.play()}
+        voiceCP = 0
+      } else {
+        if (this.data.isStart) { backgroundAudioManager.play() }
         this.setData({
           voicePath: "/images/icon/voice-open.png"
         })
@@ -101,21 +102,21 @@ Component({
     },
     //背景页转换
     swiperChange: function (e) {
-        if (e.detail.source == 'touch') {
-      this.setData({
-        current: e.detail.current
-      })
-       }
+      if (e.detail.source == 'touch') {
+        this.setData({
+          current: e.detail.current
+        })
+      }
       let bsound = this.data.bgms[this.data.current].backgroudSound
       backgroundAudioManager.title = this.data.bgms[this.data.current].name
       backgroundAudioManager.src = bsound
       if (this.data.isStart) {
-      backgroundAudioManager.play()
-      /*  backgroundAudioManager.onPlay(() => 
-         backgroundAudioManager.pause())*/
+        backgroundAudioManager.play()
+        /*  backgroundAudioManager.onPlay(() => 
+           backgroundAudioManager.pause())*/
       }
     },
-  
+
     countDown: function (event) {
       let isStart = this.data.isStart
       let times = this.data.times //获取倒计时初始值
@@ -127,7 +128,7 @@ Component({
       })
       //判断开始
       if (!isStart) {
-startTime =new Date().getTime()/1000
+        startTime = new Date().getTime() / 1000
         backgroundAudioManager.play()
         //冥想正计时
         if (this.data.increase) {
@@ -176,7 +177,7 @@ startTime =new Date().getTime()/1000
         }
       }//判断结束按钮
       else {
-        endTime = new Date().getTime()/1000
+        endTime = new Date().getTime() / 1000
         backgroundAudioManager.pause()
         this.data.log = {
           name: this.properties.increase,
@@ -184,7 +185,7 @@ startTime =new Date().getTime()/1000
           today: todayT
         }
         this.saveLog(this.data.log)
-      
+
         clearInterval(this.timer)
         if (!this.data.increase && this.data.endTime > 1) {
           //console.log(this.data.endTime,'睡眠未完成')
@@ -202,7 +203,6 @@ startTime =new Date().getTime()/1000
         } else if (this.data.increase) {
           this.finished()
         }
-      
       }
       //传Modal框数据
     },
@@ -217,8 +217,8 @@ startTime =new Date().getTime()/1000
           data: {
             think_time: meditationTime,
             sleep_time: sleepTime,
-            end_time:endTime,
-            start_time:startTime
+            end_time: endTime,
+            start_time: startTime
           },
           header: {
             'Content-Type': 'application/json',
@@ -227,8 +227,9 @@ startTime =new Date().getTime()/1000
           success: res => {
             console.log('成功入库')
           }
-        })}
-    
+        })
+      }
+
     },
     //计算分秒函数
     mathTime: function (times) {
@@ -267,21 +268,24 @@ startTime =new Date().getTime()/1000
         this.finished()
         console.log('confirm')
       } else if (res.detail.res == 'cancel') {
-        
         this.setData({
-          beforeKeepTime: this.data.beforeKeepTime +this.data.log.keepTime,
-          times: this.data.realTime-this.data.log.keepTime
+          beforeKeepTime: this.data.beforeKeepTime + this.data.log.keepTime,
+          times: this.data.realTime - this.data.log.keepTime
         })
         console.log(this.data.beforeKeepTime)
         this.countDown()
       }
     },
     restfinish: function (res) {
-      if (res.detail.res == 'confirm') {    
+      if (res.detail.res == 'confirm') {
         console.log('confirm')
       } else if (res.detail.res == 'cancel') {
+        this.setData({
+          minute: 0,
+          second: 0
+        })
         wx.navigateBack({
-          delta:1
+          delta: 1
         })
         console.log('cancel')
       }
