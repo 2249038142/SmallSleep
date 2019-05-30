@@ -1,6 +1,6 @@
 <!-- component/timer.wxml -->
 <view class="container">
-<image bindtap='voiceClose' class="voice" src="{{voicePath}}"></image>
+  <image bindtap='voiceClose' class="voice" src="{{voicePath}}"></image>
   <view class="time-fix">
     <view class="time-wrap">
       <view class="{{isStart?'time-mask time-mask-animation':'time-mask'}}"></view>
@@ -15,17 +15,17 @@
       </view>
       <view wx:else>
         <text wx:if="{{minute>1}}" class="c-white c-time">{{minute}}min</text>
-         <text wx:else class="c-white c-time">{{second}}s</text>
+        <text wx:else class="c-white c-time">{{second}}s</text>
       </view>
     </view>
     <view bindtap='countDown' class="c-white c-action">{{isStart?'结束':'开始'}}</view>
-     <modal modal="{{modal1}}" bindsuccess='modalOperate' catchtouchmove="ture">
-    <view class='modal-content' >{{resttext}}</view>
-  </modal>
-  <modal modal="{{modal2}}" bindsuccess='restfinish' catchtouchmove="true">
-  <view class="time-grey">{{today}}</view>
-    <view class='modal-content' >{{finishtext}}</view>
-  </modal>
+    <modal modal="{{modal1}}" bindsuccess='modalOperate' catchtouchmove="ture">
+      <view class='modal-content'>{{resttext}}</view>
+    </modal>
+    <modal modal="{{modal2}}" bindsuccess='restfinish' catchtouchmove="true">
+      <view class="time-grey">{{today}}</view>
+      <view class='modal-content'>{{finishtext}}</view>
+    </modal>
   </view>
   <swiper bindchange="swiperChange" class="bgm-swiper" indicator-dots='true'>
     <swiper-item wx:for="{{bgms}}">

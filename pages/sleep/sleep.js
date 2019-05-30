@@ -1,5 +1,4 @@
 // pages/sleep/sleep.js
-const bmap = require('../../libs/bmap-wx.js');
 Page({
 
   /**
@@ -41,9 +40,63 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that=this
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        console.log(`${latitude},${longitude}`)
+        wx.request({
+          url: 'http://www.xinyewangluo.xin/public/api/v1/getCityPinyin',
+          method: "POST",
+          data: {
+            location: `${longitude},${latitude}`
+          },
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success: res => {
+            console.log(res.data)
+            that.setData({
+             weatherData:res.data
+            })
+            let weatherPic = res.data.weather_data.weather.match(/晴|云|阴|雨|雪|雾|沙/)
+            console.log(weatherPic)
+            switch (weatherPic[0]) {
+              case '晴': that.setData({
+                weatherPicPath: '/images/sun.png'
+              }); break;
+              case '阴': that.setData({
+                weatherPicPath: '/images/cloudy.png'
+              }); break;
+              case '云': that.setData({
+                weatherPicPath: '/images/cloudy.png'
+              }); break;
+              case '雨': that.setData({
+                weatherPicPath: '/images/rain.png'
+              }); break;
+              case '雪': that.setData({
+                weatherPicPath: '/images/snow.png'
+              }); break;
+              case '雾': that.setData({
+                weatherPicPath: '/images/fog.png'
+              }); break;
+              case '沙': that.setData({
+                weatherPicPath: '/images/sandstorm.png'
+              }); break;
+              default: that.setData({
+                weatherPicPath: '/images/sun.png'
+              }); break;
+            }
+          }
+        })
+      }
+    })
+    
+     
     // 新建百度地图对象 
-    const BMap = new bmap.BMapWX({
+ /*  const BMap = new bmap.BMapWX({
       ak: '0CGkWt5EQovqTUKGN9K0CIEbeOXVl8gN'
     });
     let fail = data => console.log(data);
@@ -51,44 +104,15 @@ Page({
       console.log(data)
       let weatherData = data.currentWeather[0]
       this.setData({
-        weatherData: weatherData
+        weatherData2: weatherData
       });
-
-      let weatherPic = weatherData.weatherDesc.match(/晴|云|阴|雨|雪|雾|沙/)
-      console.log(weatherPic)
-      switch (weatherPic[0]) {
-        case '晴': this.setData({
-          weatherPicPath: '/images/sun.png'
-        }); break;
-        case '阴': this.setData({
-          weatherPicPath: '/images/cloudy.png'
-        }); break;
-        case '云': this.setData({
-          weatherPicPath: '/images/cloudy.png'
-        }); break;
-        case '雨': this.setData({
-          weatherPicPath: '/images/rain.png'
-        }); break;
-        case '雪': this.setData({
-          weatherPicPath: '/images/snow.png'
-        }); break;
-        case '雾': this.setData({
-          weatherPicPath: '/images/fog.png'
-        }); break;
-        case '沙': this.setData({
-          weatherPicPath: '/images/sandstorm.png'
-        }); break;
-        default: this.setData({
-          weatherPicPath: '/images/sun.png'
-        }); break;
-      }
     }
     // 发起weather请求 
     BMap.weather({
       fail: fail,
       success: success
     });
-
+*/
   },
 
   /**

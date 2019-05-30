@@ -1,9 +1,9 @@
 <!-- pages/sleep/sleep.wxml -->
 <view class="weather">
   <view class="weather-column">
-    <text>{{weatherData.currentCity}}</text>
-    <text>{{weatherData.date}}</text>
-    <text>{{weatherData.weatherDesc}} {{weatherData.wind}}</text>
+    <text>{{weatherData.city}}</text>
+    <text>{{weatherData.weather_data.date}}</text>
+    <text>{{weatherData.weather_data.weather}} {{weatherData.weather_data.wind}}</text>
     <image src="{{weatherPicPath}}"></image>
   </view>
 </view>

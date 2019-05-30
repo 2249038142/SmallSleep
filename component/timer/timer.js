@@ -33,24 +33,24 @@ Component({
     beforeKeepTime: 0,
     bgms: [
       {
-        name: "风铃鸟莺",
-        imageClass: ".bg4",
-        backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827699.mp3"
-      },
+        name: "乡间漫步",
+        imageClass: ".bg2",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1325545439.mp3"
+      }, 
       {
-        name: "冥想歇息",
-        imageClass: ".bg3",
-        backgroudSound: "http://music.163.com/song/media/outer/url?id=1340827713.mp3"
-      }
-      , {
-        name: "林泉禅修",
+        name: "风吹金麦",
         imageClass: ".bg1",
+      backgroudSound: "http://music.163.com/song/media/outer/url?id=1306896463.mp3"
+      },
+     {
+        name: "夜雨禅修",
+        imageClass: ".bg3",
         backgroudSound: "http://music.163.com/song/media/outer/url?id=1310317459.mp3"
       },
       {
-        name: "溪水溶洞",
-        imageClass: ".bg2",
-        backgroudSound: "http://music.163.com/song/media/outer/url?id=1310316559.mp3"
+        name: "海鸥湖岸",
+        imageClass: ".bg4",
+        backgroudSound: "http://music.163.com/song/media/outer/url?id=1325545440.mp3"
       },
 
     ],
@@ -69,7 +69,7 @@ Component({
     backgroundAudioManager.src = bsound
   },
   pageLifetimes: {
-    show: function () {
+    show: function() {
       // 页面被展示
       this.setData({
         realTime: this.properties.times
@@ -83,7 +83,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    voiceClose: function () {
+    voiceClose: function() {
       console.log(voiceCP)
       if (voiceCP) {
         backgroundAudioManager.pause()
@@ -92,7 +92,9 @@ Component({
         })
         voiceCP = 0
       } else {
-        if (this.data.isStart) { backgroundAudioManager.play() }
+        if (this.data.isStart) {
+          backgroundAudioManager.play()
+        }
         this.setData({
           voicePath: "/images/icon/voice-open.png"
         })
@@ -101,7 +103,7 @@ Component({
 
     },
     //背景页转换
-    swiperChange: function (e) {
+    swiperChange: function(e) {
       if (e.detail.source == 'touch') {
         this.setData({
           current: e.detail.current
@@ -117,7 +119,7 @@ Component({
       }
     },
 
-    countDown: function (event) {
+    countDown: function(event) {
       let isStart = this.data.isStart
       let times = this.data.times //获取倒计时初始值
       let halfTime = this.data.realTime / 2
@@ -128,6 +130,9 @@ Component({
       })
       //判断开始
       if (!isStart) {
+        wx.setKeepScreenOn({
+          keepScreenOn: true
+        })
         startTime = new Date().getTime() / 1000
         backgroundAudioManager.play()
         //冥想正计时
@@ -157,7 +162,7 @@ Component({
             }
             this.mathTime(times)
             //如果睡眠结束
-            if (times === 0) {
+            if (times == 0) {
               wx.vibrateLong()
               this.setData({
                 leftDeg: 45,
@@ -165,7 +170,7 @@ Component({
               })
               this.data.log = {
                 name: this.properties.increase,
-                keepTime: this.realTime.times,
+                keepTime: this.data.realTime,
                 today: todayT
               }
               this.saveLog(this.data.log)
@@ -175,7 +180,7 @@ Component({
             }
           }, 1000)
         }
-      }//判断结束按钮
+      } //判断结束按钮
       else {
         endTime = new Date().getTime() / 1000
         backgroundAudioManager.pause()
@@ -206,13 +211,13 @@ Component({
       }
       //传Modal框数据
     },
-    saveLog: function (log) {
+    saveLog: function(log) {
       //防止用户多次点击
       if (log.keepTime > 2) {
         let meditationTime = log.name ? log.keepTime : 0
         let sleepTime = log.name ? 0 : log.keepTime
         wx.request({
-          url: 'http://129.204.63.87/sleep/public/api/v1/UserInformation',
+          url: 'http://www.xinyewangluo.xin/public/api/v1/UserInformation',
           method: "POST",
           data: {
             think_time: meditationTime,
@@ -232,7 +237,7 @@ Component({
 
     },
     //计算分秒函数
-    mathTime: function (times) {
+    mathTime: function(times) {
       let M = Math.floor(times / 60)
       let S = Math.floor(times) % 60
       this.setData({
@@ -242,7 +247,7 @@ Component({
       })
     },
     //完成弹出框
-    finished: function () {
+    finished: function() {
       let objModal = {
         show: true,
         title: '完成！',
@@ -259,7 +264,7 @@ Component({
         finishtext: `刚刚${kind2}了${this.data.log.keepTime}秒，美好生活继续前行...`
       })
     },
-    modalOperate: function (res) {
+    modalOperate: function(res) {
       if (res.detail.res == 'confirm') {
         this.setData({
           leftDeg: 45,
@@ -276,7 +281,7 @@ Component({
         this.countDown()
       }
     },
-    restfinish: function (res) {
+    restfinish: function(res) {
       if (res.detail.res == 'confirm') {
         console.log('confirm')
       } else if (res.detail.res == 'cancel') {

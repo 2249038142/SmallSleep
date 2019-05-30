@@ -10,7 +10,7 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
          wx.request({
-           url: 'http://129.204.63.87/sleep/public/api/v1/token/user',
+           url: 'http://www.xinyewangluo.xin/public/api/v1/token/user',
             method: "POST",
             data: {
              code: res.code

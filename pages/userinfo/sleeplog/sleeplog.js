@@ -20,7 +20,7 @@ Page({
     })
     console.log(options.attributeName)
     let attributeName = options.attributeName === "false" ? false : true
-    let timeLogUrl = attributeName ? 'https://www.xiaominblog.cn/sleep/public/api/v1/getsleep' :'https://www.xiaominblog.cn/sleep/public/api/v1/getthink'
+    let timeLogUrl = attributeName ? 'http://www.xinyewangluo.xin/public/api/v1/getsleep' :'http://www.xinyewangluo.xin/public/api/v1/getthink'
    
     this.setData({
       attributeName: attributeName
