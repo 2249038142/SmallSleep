@@ -14,7 +14,7 @@
         <text class="c-white c-time">{{minute}}:{{second}}s</text>
       </view>
       <view wx:else>
-        <text wx:if="{{minute>1}}" class="c-white c-time">{{minute}}min</text>
+        <text wx:if="{{minute>=1}}" class="c-white c-time">{{minute}}min</text>
         <text wx:else class="c-white c-time">{{second}}s</text>
       </view>
     </view>

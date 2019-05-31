@@ -213,7 +213,7 @@ Component({
     },
     saveLog: function(log) {
       //防止用户多次点击
-      if (log.keepTime > 2) {
+      if (log.keepTime > 1) {
         let meditationTime = log.name ? log.keepTime : 0
         let sleepTime = log.name ? 0 : log.keepTime
         wx.request({
