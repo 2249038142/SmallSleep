@@ -158,14 +158,14 @@
 }
 
 .bg1 {
-   background-image: url(http://www.xinyewangluo.xin/public/static/images/imgtheme1.jpg);
+   background-image: url(https://www.xiaominblog.cn/sleep/public/static/images/imgtheme1.jpg);
 }
 .bg2 {
-   background-image: url(http://www.xinyewangluo.xin/public/static/images/imgtheme2.png);
+   background-image: url(https://www.xiaominblog.cn/sleep/public/static/images/imgtheme2.png);
 }
 .bg3 {
-   background-image: url(http://www.xinyewangluo.xin/public/static/images/imgtheme3.jpg);
+   background-image: url(https://www.xiaominblog.cn/sleep/public/static/images/imgtheme3.jpg);
 }
 .bg4 {
-  background-image: url(http://www.xinyewangluo.xin/public/static/images/imgtheme4.jpg);
+  background-image: url(https://www.xiaominblog.cn/sleep/public/static/images/imgtheme4.jpg);
 }

@@ -1,7 +1,7 @@
 /* pages/sleep/sleep.wxss */
 
 .weather {
-    background: url(http://www.xinyewangluo.xin/public/static/images/backgoudTop.jpg);
+    background: url(https://www.xiaominblog.cn/sleep/public/static/images/backgoudTop.jpg);
     height: 41%;
     width: 100%;
     background-size: 100% 100%;

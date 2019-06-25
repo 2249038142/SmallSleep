@@ -51,7 +51,7 @@ Page({
         const longitude = res.longitude
         console.log(`${latitude},${longitude}`)
         wx.request({
-          url: 'http://www.xinyewangluo.xin/public/api/v1/getCityPinyin',
+          url: 'https://www.xiaominblog.cn/sleep/public/api/v1/getCityPinyin',
           method: "POST",
           data: {
             location: `${longitude},${latitude}`

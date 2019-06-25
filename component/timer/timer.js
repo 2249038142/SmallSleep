@@ -148,8 +148,8 @@ Component({
           this.timer = setInterval(() => {
             times--
             //圆形进度条
-            console.log(times)
-            console.log(halfTime)
+            // console.log(times)
+            // console.log(halfTime)
             if (times > halfTime) {
               this.setData({
                 leftDeg: this.data.leftDeg - 360 / this.data.realTime
@@ -217,7 +217,7 @@ Component({
         let meditationTime = log.name ? log.keepTime : 0
         let sleepTime = log.name ? 0 : log.keepTime
         wx.request({
-          url: 'http://www.xinyewangluo.xin/public/api/v1/UserInformation',
+          url: 'https://www.xiaominblog.cn/sleep/public/api/v1/UserInformation',
           method: "POST",
           data: {
             think_time: meditationTime,
