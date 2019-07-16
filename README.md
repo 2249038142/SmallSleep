@@ -59,22 +59,22 @@
 
 利用渐变色椭圆层叠，位移制造出层次感，分离上下两块层区域。
 
-![backTop](https://github.com/2249038142/SmallSleep/tree/master/readmeImage/backTop.png)
+![backTop](https://github.com/2249038142/SmallSleep/blob/master/readmeImage/backTop.png)
 
 其图标我裁剪植物类型然后染出渐变主题色，植物也能让人心情舒适平静。图案非常简洁，简单与文艺风格，整体色调是蓝紫渐变色图标与上方背景相呼应。
 
  简约风格，音乐背景图片可以左右滑动切换，当睡眠倒数时间开始后，圆周随时间变化蓝色呼吸灯缓慢缩放，使用户跟随呼吸灯的节奏，平静深呼吸。
-睡眠记录，冥想使用了![Green think](https://github.com/2249038142/SmallSleep/tree/master/readmeImage/Green think.png)灯泡图标表示思考到了什么，而睡眠部分使用的床左边灰色记录日期，右边黑色大字体记录时间。
+睡眠记录，冥想使用了![Green think](https://github.com/2249038142/SmallSleep/blob/master/readmeImage/Green think.png)灯泡图标表示思考到了什么，而睡眠部分使用的床左边灰色记录日期，右边黑色大字体记录时间。
 
 
 
-![1559064901953](https://github.com/2249038142/SmallSleep/tree/master/readmeImage/1559064901953.png)
+![1559064901953](https://github.com/2249038142/SmallSleep/blob/master/readmeImage/1559064901953.png)
 
 ### 3.技术方案
 
 ​	**（1）程序框架图**
 
-![1559047200524](https://github.com/2249038142/SmallSleep/tree/master/readmeImage/1559047200524.png)
+![1559047200524](https://github.com/2249038142/SmallSleep/blob/master/readmeImage/1559047200524.png)
 
 说明:总体为两个功能，冥想和睡眠 。其中的主要组件，计时组件。
 
