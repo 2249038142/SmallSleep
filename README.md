@@ -1,5 +1,7 @@
 # SmallSleep
-> have a rest and do some meditation 
+> have a rest and do some meditation   
+
+![erweima](https://github.com/2249038142/SmallSleep/blob/master/readmeImage/image.png)
 ## 它的功能
 1. 睡眠倒计时
 2. 冥想正计时
